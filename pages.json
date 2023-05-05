@@ -1,9 +1,40 @@
 {
+	"easycom": {
+		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+		"custom": {
+			"^u-(.*)": "uview-plus/components/u-$1/u-$1.vue"
+		}
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/knowledge/index",
+			"style": {
+				"navigationBarTitleText": "体系",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/official/index",
+			"style": {
+				"navigationBarTitleText": "公众号",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/project/index",
+			"style": {
+				"navigationBarTitleText": "项目",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/me/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
 			}
 		}
 	],
@@ -13,5 +44,43 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#333333",
+		"borderStyle": "white",
+		"backgroundColor": "#FFFFFF",
+		"fontSize": "22rpx",
+		"list": [{
+				"text": "首页",
+				"iconPath": "static/tab_home_normal.png",
+				"selectedIconPath": "static/tab_home_active.png",
+				"pagePath": "pages/home/index"
+			},
+			{
+				"text": "体系",
+				"iconPath": "static/tab_knowledge_normal.png",
+				"selectedIconPath": "static/tab_knowledge_active.png",
+				"pagePath": "pages/knowledge/index"
+			},
+			{
+				"text": "公众号",
+				"iconPath": "static/tab_official_account_normal.png",
+				"selectedIconPath": "static/tab_official_account_active.png",
+				"pagePath": "pages/official/index"
+			},
+			{
+				"text": "项目",
+				"iconPath": "static/tab_project_normal.png",
+				"selectedIconPath": "static/tab_project_active.png",
+				"pagePath": "pages/project/index"
+			},
+			{
+				"text": "我的",
+				"iconPath": "static/tab_me_normal.png",
+				"selectedIconPath": "static/tab_me_active.png",
+				"pagePath": "pages/me/index"
+			}
+		]
+	}
 }
