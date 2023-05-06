@@ -40,6 +40,9 @@
 		uni.request({
 			url: 'https://www.wanandroid.com/user/login',
 			method: "POST",
+			header: {
+			        'content-type': 'application/x-www-form-urlencoded' //自定义请求头信息
+			    },
 			data: {
 				"username": username.value,
 				"password": password.value
