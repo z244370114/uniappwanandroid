@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 	import { ref } from "vue";
 	import itemKnowledge from '@/components/itemKnowledge.vue'
+
 	import { onLoad } from '@dcloudio/uni-app'
 
 	const titleList = ref(['体系', '导航'])
@@ -34,7 +35,6 @@
 
 	function itemClick(index) {
 		titleIndex.value = index
-		console.log(index);
 	}
 
 	function loadData() {

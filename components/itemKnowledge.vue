@@ -14,7 +14,7 @@
 
 	function itemTagClick(index) {
 		uni.navigateTo({
-			url: "/pages/knowledge/knowList?title=" + pros.item.name + "&cid=" + pros.item.children[index].id +
+			url: "/pages/knowledge/knowList?title=" + pros.item.name + "&index=" + index +
 				"&data=" + encodeURIComponent(JSON.stringify(pros.item))
 		})
 	}

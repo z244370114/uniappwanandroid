@@ -19,10 +19,12 @@
 				<u--text :text="item.superChapterName" color="#cccccc" size="12"></u--text>
 			</u-col>
 			<u-col span="1">
-				<u-image width="28px" height="28px"></u-image>
+				<u-image width="28px" height="28px"
+					:src="item.zan == 0 ? '/static/ic_collect_no.png':'/static/ic_collect_yes.png'"
+					@click="click"></u-image>
 			</u-col>
 		</u-row>
-		<u-line style="padding-top: 10px;"></u-line>
+		<u-line margin="10px 0 0 0"></u-line>
 	</view>
 </template>
 
@@ -32,6 +34,12 @@
 	function itemClick() {
 		uni.navigateTo({
 			url: '/pages/webview/webview?link=' + pros.item.link
+		})
+	}
+
+	function click() {
+		uni.showToast({
+			title: '测试'
 		})
 	}
 </script>

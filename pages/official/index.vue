@@ -1,5 +1,7 @@
 <template>
-	<u-tabs :list="titleList" keyName="name" @click="click" style="background: #3c9cff" lineColor="#fff" :activeStyle="{
+	<u-sticky bgColor="#3c9cff">
+		<u-tabs :list="titleList" keyName="name" @click="click" style="background: #3c9cff" lineColor="#fff"
+			:activeStyle="{
 	            color: '#fff',
 	            fontWeight: 'bold',
 	            transform: 'scale(1.05)'
@@ -7,6 +9,7 @@
 	            color: '#f0f0f0',
 	            transform: 'scale(1)',
 	        }"></u-tabs>
+	</u-sticky>
 	<u-list @scrolltolower="scrolltolower">
 		<u-list-item v-for="(item, index) in articleLists[titleIndex]" :key="index">
 			<itemOfficial :item="item" @click="itemClick(index)"></itemOfficial>

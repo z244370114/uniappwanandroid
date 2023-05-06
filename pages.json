@@ -90,10 +90,9 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "玩安卓",
+		"navigationBarBackgroundColor": "#3c9cff"
 	},
 	"uniIdRouter": {},
 	"tabBar": {
