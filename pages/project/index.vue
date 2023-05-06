@@ -1,7 +1,6 @@
 <template>
-	<u-sticky>
-		<u-tabs :list="titleList" keyName="name" @click="click" style="background: #3c9cff" lineColor="#fff"
-			:activeStyle="{
+	<u-sticky bgColor="#3c9cff">
+		<u-tabs :list="titleList" keyName="name" @click="click" lineColor="#fff" :activeStyle="{
 	            color: '#fff',
 	            fontWeight: 'bold',
 	            transform: 'scale(1.05)'

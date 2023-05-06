@@ -2,7 +2,6 @@
 	<u-sticky>
 		<u-subsection :list="titleList" :current="titleIndex" @change="sectionChange"></u-subsection>
 	</u-sticky>
-
 	<u-list @scrolltolower="scrolltolower">
 		<u-list-item v-for="(item, index) in itemLists[titleIndex]" :key="index">
 			<itemKnowledge :item="item" @click="itemClick(index)"></itemKnowledge>
@@ -35,6 +34,7 @@
 
 	function itemClick(index) {
 		titleIndex.value = index
+		console.log(index);
 	}
 
 	function loadData() {

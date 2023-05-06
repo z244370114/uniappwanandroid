@@ -3,7 +3,7 @@
 		<u-text :text="item.name"></u-text>
 		<view class="flex-view">
 			<view v-for="(items,index) in item.children" :key="index" style="padding: 5px;">
-				<u-tag :text="items.name" plain shape="circle"></u-tag>
+				<u-tag :text="items.name" plain shape="circle" @click="itemTagClick(index)"></u-tag>
 			</view>
 		</view>
 	</view>
@@ -11,6 +11,13 @@
 
 <script setup>
 	const pros = defineProps(['item'])
+
+	function itemTagClick(index) {
+		uni.navigateTo({
+			url: "/pages/knowledge/knowList?title=" + pros.item.name + "&cid=" + pros.item.children[index].id +
+				"&data=" + encodeURIComponent(JSON.stringify(pros.item))
+		})
+	}
 </script>
 
 <style lang="scss" scoped>

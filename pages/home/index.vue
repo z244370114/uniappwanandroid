@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<u-swiper :list="bannerList" keyName="imagePath" height="180px" showTitle previousMargin="30" nextMargin="30"
-			radius="5" :autoplay="false" circular></u-swiper>
+			radius="5" :autoplay="false" circular @click="swiperClick"></u-swiper>
 		<u-list @scrolltolower="scrolltolower">
 			<u-list-item v-for="(item, index) in articleLists" :key="index">
-				<itemHome :item="item" @click="itemClick(index)"></itemHome>
+				<itemHome :item="item"></itemHome>
 			</u-list-item>
 		</u-list>
 	</view>
@@ -27,6 +27,12 @@
 
 	function scrolltolower() {
 		articleList()
+	}
+
+	function swiperClick(index) {
+		uni.navigateTo({
+			url: '/pages/webview/webview?link=' + bannerList.value[index].url
+		})
 	}
 
 	function banner() {
@@ -59,9 +65,8 @@
 	}
 
 	function itemClick(index) {
-		// articleLists[index].link
-		uni.showToast({
-			title: index
+		uni.navigateTo({
+			url: '/pages/webview/webview?link=' + articleLists[index].link
 		})
 	}
 </script>

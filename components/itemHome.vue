@@ -1,14 +1,16 @@
 <template>
-	<view style="padding: 10px; background: #fff;">
+	<view style="padding: 10px; background: #fff;" @click="itemClick">
 		<u-row justify="space-between">
 			<u-col span="1" justify="start" textAlign="center">
-				<u--text text="置顶:" color="#f00" size="12"></u--text>
+				<u--text v-if="item.fresh" type="primary" text="置顶:" size="12"></u--text>
+				<u--text v-else type="primary" text="" size="12"></u--text>
 			</u-col>
-			<u-col span="8">
+			<u-col span="6">
 				<u--text :text="item.shareUser" color="#cccccc" align="left" mode="name" size="12"></u--text>
 			</u-col>
-			<u-col span="3">
-				<u--text :text="item.shareDate" color="#cccccc" mode="date" size="12"></u--text>
+			<u-col span="5">
+				<u--text :text="item.shareDate" color="#cccccc" mode="date" size="12"
+					format="yyyy-MM-dd hh:mm:ss"></u--text>
 			</u-col>
 		</u-row>
 		<u-text class="title" :text="item.title" :lines="2" margin="5px"></u-text>
@@ -26,6 +28,12 @@
 
 <script setup>
 	const pros = defineProps(['item'])
+
+	function itemClick() {
+		uni.navigateTo({
+			url: '/pages/webview/webview?link=' + pros.item.link
+		})
+	}
 </script>
 
 <style lang="scss" scoped>
