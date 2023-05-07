@@ -12,9 +12,9 @@
 		        }"></u-tabs>
 		</u-sticky>
 		<swiper :current="swiperCurrent" @transition="transition" @animationfinish="animationfinish"
-			style="height: 800px;">
+			style="position: absolute;top: 44px;bottom: 0;left: 0;right: 0;height: auto;">
 			<swiper-item v-for="(item, index) in titlesList" :key="index" style="flex: 1;">
-				<scroll-view scroll-y style="width: 100%;" @scrolltolower="onreachBottom" :enable-flex="true">
+				<scroll-view scroll-y style="width: 100%;height: 100%;" @scrolltolower="onreachBottom" :enable-flex="true">
 					<view v-if="!!articleLists[index]" v-for="(items, indexs) in articleLists[index]" :key="indexs">
 						<itemOfficial :item="items" @click="itemClick(indexs)"></itemOfficial>
 					</view>
@@ -33,7 +33,7 @@
 		onLoad
 	} from '@dcloudio/uni-app'
 
-	const uTabs = ref(null)
+	// const uTabs = ref(null)
 	const titlesList = ref([])
 	const articleLists = ref([])
 	const page = ref([])
@@ -60,6 +60,7 @@
 
 	function transition(e) {
 		let dx = e.detail.dx;
+		console.log(dx)
 		// uTabs.value.animation(dx);
 	}
 
