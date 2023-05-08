@@ -5,7 +5,6 @@ import uviewPlus from 'uview-plus'
 import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
-
 try {
 	function isPromise(obj) {
 		return (

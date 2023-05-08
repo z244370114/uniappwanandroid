@@ -1,7 +1,7 @@
 <template>
 	<view class="bg-view">
 		<u-toast :ref="uToast"></u-toast>
-		<u--image width="80px" height="80px" shape="circle"></u--image>
+		<u--image class="uimage" width="80" height="80" src="https://wanandroid.com/resources/image/pc/logo.png" :fade="true" duration="450" shape="circle"></u--image>
 		<u--input placeholder="请输入用户名" border="surround" v-model="username" @change="changeUser"></u--input>
 		<view style="height: 20px;"></view>
 		<u--input placeholder="请输入密码" type="password" border="surround" v-model="password" clearable
@@ -13,8 +13,9 @@
 </template>
 
 <script lang="ts" setup>
+	import apis from '../../service/api/index.js'
 	import { ref } from "vue"
-
+	import api from '../../service/api/index.js';
 	const uToast = ref()
 
 	const username = ref('')
@@ -36,7 +37,19 @@
 		})
 	}
 
-	function login() {
+const login = async () => {
+	console.log('------')
+	const res = await apis.Login({
+		username: username.value,
+		password: password.value
+	})
+	console.log(res)
+	console.log('------')
+	const a = await apis.collectionList()
+	await apis.homeList()
+	console.log(a)
+}
+	function logi2n() {
 		uni.request({
 			url: 'https://www.wanandroid.com/user/login',
 			method: "POST",
@@ -49,7 +62,9 @@
 			},
 			success: (res => {
 				if (res.data.errorCode == 0) {
-					uni.navigateBack()
+					console.log(res)
+					uni.setStorageSync('token',JSON.stringify(res.cookies))
+					// uni.navigateBack()
 				} else if (res.data.errorCode == -1) {
 					uni.showToast({
 						title: res.data.errorMsg
@@ -63,8 +78,12 @@
 <style lang="scss" scoped>
 	.bg-view {
 		flex-direction: column;
-		flex: 1;
 		display: flex;
 		padding: 50px 30px;
+		::v-deep .u-transition {
+			margin-bottom: 20px;
+			display: flex;
+			align-items: center;
+		}
 	}
 </style>
