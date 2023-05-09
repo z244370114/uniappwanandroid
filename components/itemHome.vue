@@ -21,7 +21,7 @@
 			<u-col span="1">
 				<view @click.stop>
 					<u-image width="28px" height="28px"
-						:src="item.zan == 0 ? '/static/ic_collect_no.png':'/static/ic_collect_yes.png'"
+						:src="!item.collect ? '/static/ic_collect_no.png':'/static/ic_collect_yes.png'"
 						@click="click"></u-image>
 				</view>
 			</u-col>
@@ -31,17 +31,24 @@
 </template>
 
 <script setup>
-	const pros = defineProps(['item'])
+	import apis from '../service/api/index.js'
+	const props = defineProps(['item'])
 
 	function itemClick() {
 		uni.navigateTo({
-			url: '/pages/webview/webview?link=' + pros.item.link
+			url: '/pages/webview/webview?link=' + props.item.link
 		})
 	}
 
 	function click() {
+		if (props.item.collect) {
+			apis.uncollect(props.item.id)
+		}else {
+			apis.collect(props.item.id)
+		}
+		props.item.collect = !props.item.collect
 		uni.showToast({
-			title: '测试'
+			title: props.item.collect ? '收藏成功' : '取消收藏'
 		})
 	}
 </script>

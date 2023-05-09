@@ -19,7 +19,7 @@ minRequest.interceptors.response((response) => {
             uni.setStorageSync('cookie', response.cookies.join(','));
         }
     }
-    return response.data
+    return response.data.data
 })
 // 设置默认配置
 minRequest.setConfig((config) => {
@@ -37,8 +37,17 @@ export default {
 			})
 	},
 	// 首页
-	homeList() {
-		return minRequest.get('/article/list/0/json')
+	homeList(page) {
+		return minRequest.get(`/article/list/${page}/json`)
+	},
+	
+	// 收藏站内文章
+	collect(id) {
+		return minRequest.post(`/lg/collect/${id}/json`)
+	},
+	// 取消收藏 (文章列表)
+	uncollect(id) {
+		return minRequest.post(`/lg/uncollect_originId/${id}/json`)
 	},
 	// 收藏文章列表
 	collectionList() {

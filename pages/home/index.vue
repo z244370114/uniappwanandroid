@@ -14,6 +14,7 @@
 	import { ref } from "vue"
 	import itemHome from '@/components/itemHome.vue'
 	import { onLoad } from '@dcloudio/uni-app'
+	import apis from '../../service/api/index.js'
 	// import { homeBanner } from '@/service/api/index.js'
 
 	const bannerList = ref([])
@@ -43,26 +44,38 @@
 			})
 		})
 	}
-
-	function articleList() {
-		let urls = 'https://www.wanandroid.com/article/list/' + page.value + '/json'
-		uni.request({
-			url: urls,
-			success: (res => {
-				if (res.data.errorCode == 0) {
-					if (page.value == 0) {
-						articleLists.value = []
-						articleLists.value = res.data.data.datas
-					} else {
-						let datas = articleLists.value.concat(res.data.data.datas)
-						articleLists.value = datas
-					}
-					page.value++
-				}
-				console.log(articleLists.value.length);
-			})
-		})
+	const articleList = async () => {
+		const res = await apis.homeList(page.value)
+		if (page.value == 0) {
+			articleLists.value = []
+			articleLists.value = res.datas
+		} else {
+			let datas = articleLists.value.concat(res.datas)
+			articleLists.value = datas
+		}
+		page.value++
 	}
+
+	// function articleList1() {
+	// 	let urls = 'https://www.wanandroid.com/article/list/' + page.value + '/json'
+	// 	uni.request({
+	// 		withCredentials: true,
+	// 		url: urls,
+	// 		success: (res => {
+	// 			if (res.data.errorCode == 0) {
+	// 				if (page.value == 0) {
+	// 					articleLists.value = []
+	// 					articleLists.value = res.data.data.datas
+	// 				} else {
+	// 					let datas = articleLists.value.concat(res.data.data.datas)
+	// 					articleLists.value = datas
+	// 				}
+	// 				page.value++
+	// 			}
+	// 			console.log(articleLists.value.length);
+	// 		})
+	// 	})
+	// }
 
 	function itemClick(index) {
 		uni.navigateTo({
