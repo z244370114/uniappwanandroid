@@ -1,11 +1,12 @@
 <template>
 	<view class="bg-view">
 		<u-toast :ref="uToast"></u-toast>
-		<u--image class="uimage" width="80" height="80" src="https://wanandroid.com/resources/image/pc/logo.png" :fade="true" duration="450" shape="circle"></u--image>
+		<u--image class="uimage" width="100" height="100" src="https://wanandroid.com/resources/image/pc/logo.png" :fade="true" duration="450" shape="circle"></u--image>
 		<u--input placeholder="请输入用户名" border="surround" v-model="username" @change="changeUser"></u--input>
 		<view style="height: 20px;"></view>
 		<u--input placeholder="请输入密码" type="password" border="surround" v-model="password" clearable
 			@change="changePass"></u--input>
+		<view class="text" @click="goRegist">没有账号？去注册</view>
 		<view style="height: 20px;"></view>
 		<u-button type="primary" size="small" text="登录" @click="login"></u-button>
 	</view>
@@ -15,7 +16,6 @@
 <script lang="ts" setup>
 	import apis from '../../service/api/index.js'
 	import { ref } from "vue"
-	import api from '../../service/api/index.js';
 	const uToast = ref()
 
 	const username = ref('')
@@ -38,16 +38,14 @@
 	}
 
 const login = async () => {
-	console.log('------')
 	const res = await apis.Login({
 		username: username.value,
 		password: password.value
 	})
-	console.log(res)
-	console.log('------')
-	const a = await apis.collectionList()
-	await apis.homeList()
-	console.log(a)
+	uni.setStorageSync('userInfo', JSON.stringify(res))
+	uni.reLaunch({
+		url: '/pages/home/index'
+	});
 }
 	function logi2n() {
 		uni.request({
@@ -73,6 +71,11 @@ const login = async () => {
 			}),
 		})
 	}
+	const goRegist = () => {
+		uni.navigateTo({
+			url: '/subPagesA/regist/index'
+		})
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -85,5 +88,11 @@ const login = async () => {
 			display: flex;
 			align-items: center;
 		}
+	}
+	.text {
+		padding-top: 10px;
+		text-align: right;
+		font-size: 14px;
+		color: #ccc;
 	}
 </style>

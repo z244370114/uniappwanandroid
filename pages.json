@@ -49,12 +49,6 @@
 				"enablePullDownRefresh": false
 			}
 		}, {
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录",
-				"enablePullDownRefresh": false
-			}
-		}, {
 			"path": "pages/me/integral",
 			"style": {
 				"navigationBarTitleText": "我的积分",
@@ -89,6 +83,25 @@
 			}
 		}
 	],
+	"subPackages": [{
+		"root": "subPagesA",
+		"pages": [
+			{
+				"path": "login/login",
+				"style": {
+					"navigationBarTitleText": "登录",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "regist/index",
+				"style": {
+					"navigationBarTitleText": "注册",
+					"enablePullDownRefresh": false
+				}
+			}
+		]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "玩安卓",
