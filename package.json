@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "uview-plus": "^3.1.30"
   }
 }
