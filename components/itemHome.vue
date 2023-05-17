@@ -32,6 +32,7 @@
 
 <script setup>
 	import apis from '../service/api/index.js'
+
 	const props = defineProps(['item'])
 
 	function itemClick() {
