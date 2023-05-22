@@ -2,11 +2,16 @@
 	<u-sticky>
 		<u-subsection :list="titleList" :current="titleIndex" @change="sectionChange"></u-subsection>
 	</u-sticky>
-	<u-list @scrolltolower="scrolltolower">
-		<u-list-item v-for="(item, index) in itemLists[titleIndex]" :key="index">
-			<itemKnowledge :item="item" @click="itemClick(index)"></itemKnowledge>
-		</u-list-item>
-	</u-list>
+	<swiper :current="titleIndex" style="height: 100vh;">
+		<swiper-item v-for="(itemList, indexs) in itemLists" :key="indexs">
+			<u-list @scrolltolower="scrolltolower">
+				<u-list-item v-for="(item, index) in itemList" :key="index">
+					<itemKnowledge :item="item" @click="itemClick(index)"></itemKnowledge>
+				</u-list-item>
+			</u-list>
+		</swiper-item>
+	</swiper>
+
 </template>
 
 <script lang="ts" setup>

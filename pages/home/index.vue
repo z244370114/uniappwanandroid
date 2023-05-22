@@ -2,7 +2,7 @@
 	<view>
 		<u-swiper :list="bannerList" keyName="imagePath" height="180px" showTitle previousMargin="30" nextMargin="30"
 			radius="5" :autoplay="false" circular @click="swiperClick"></u-swiper>
-		<u-list @scrolltolower="scrolltolower">
+		<u-list class="list-view" @scrolltolower="scrolltolower">
 			<u-list-item v-for="(item, index) in articleLists" :key="index">
 				<itemHome :item="item"></itemHome>
 			</u-list-item>
@@ -85,5 +85,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+	.list-view {}
 </style>

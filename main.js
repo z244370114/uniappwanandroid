@@ -1,5 +1,6 @@
 import App from './App'
 import uviewPlus from 'uview-plus'
+import _ from 'lodash'
 
 // #ifndef VUE3
 import Vue from 'vue'
