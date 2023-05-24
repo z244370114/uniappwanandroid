@@ -4,15 +4,15 @@
 			<u--image src="https://cdn.uviewui.com/uview/album/1.jpg" shape="circle" :lazy-load="true" :fade="true"
 				duration="450" width="80px" height="80px"></u--image>
 			<u--text align="center" color="#fff" margin="10px" text="玩Android"></u--text>
-			<u--text align="center" color="#fff" text="id"></u--text>
 			<view>
 				<u-text v-if="!isLogin" align="center" color="#fff" text="去登录" @click="goLogin"></u-text>
 				<u-text v-else align="center" color="#fff" :text="userInfo.value.username"></u-text>
+				<!-- <u-text v-else align="center" color="#fff" :text="userInfo.value.username"></u-text> -->
 			</view>
 		</view>
 		<u-cell-group border="false">
 			<view v-for="(item, index) in itemList" :key="index">
-				<u-cell icon="setting-fill" size="mini" :title="item.title" isLink :url="item.pageUrl" @click="cellClick"
+				<u-cell :icon="item.icon" size="mini" :title="item.title" isLink :url="item.pageUrl" @click="cellClick"
 					:name="item.name"></u-cell>
 			</view>
 		</u-cell-group>
@@ -32,26 +32,25 @@
 
 	const itemList = ref([{
 		"title": "我的积分",
-		"icon": "",
+		"icon": "/static/ic_integral.png",
 		"pageUrl": "pages/me/integral",
-
 	}, {
 		"title": "我的分享",
-		"icon": "",
+		"icon": "/static/ic_share.png",
 		"pageUrl": "pages/me/share",
 	}, {
 		"title": "我的收藏",
-		"icon": "",
+		"icon": "/static/ic_collect.png",
 		"pageUrl": "pages/me/collect",
 	}, {
 		"title": "阅读历史",
-		"icon": "",
+		"icon": "/static/ic_history.png",
 		"pageUrl": "pages/me/history",
 	}, {
 		"title": "关于作者",
-		"icon": "",
+		"icon": "/static/ic_author.png",
 		"pageUrl": "pages/me/author",
-	} ])
+	}])
 
 	const userInfo = reactive({})
 
@@ -64,10 +63,10 @@
 		if (Object.keys(userInfo.value).length) {
 			itemList.value.push({
 				"title": "退出登录",
-				"icon": "",
+				"icon": "/static/ic_logut.png",
 				"pageUrl": "",
-				"name":'loginOut'
-	})
+				"name": 'loginOut'
+			})
 		}
 	})
 
@@ -76,12 +75,13 @@
 			url: '/subPagesA/login/login'
 		})
 	}
+
 	const cellClick = async (params) => {
 		if (params.name === 'loginOut') {
 			const res = await apis.loginOut()
 			uni.removeStorageSync('userInfo')
 			uni.reLaunch({
-				url:'/pages/me/index'
+				url: '/pages/me/index'
 			})
 		}
 	}

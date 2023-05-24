@@ -72,5 +72,9 @@ export default {
 	// 收藏文章列表
 	collectionList(page) {
 		return minRequest.get(`/lg/collect/list/${page}/json`)
+	},
+	// 我的积分列表
+	myIntegralList(page) {
+		return minRequest.get(`/lg/coin/list/${page}/json`)
 	}
 }

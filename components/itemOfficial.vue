@@ -14,12 +14,14 @@
 				<u--text :text="item.superChapterName" color="#cccccc" size="12"></u--text>
 			</u-col>
 			<u-col span="1">
-				<u-image width="28px" height="28px"
-					:src="item.zan == 0 ? '/static/ic_collect_no.png':'/static/ic_collect_yes.png'"
-					@click="zanClick"></u-image>
+				<view @click.stop>
+					<u-image width="28px" height="28px"
+						:src="item.zan == 0 ? '/static/ic_collect_no.png':'/static/ic_collect_yes.png'"
+						@click="zanClick"></u-image>
+				</view>
 			</u-col>
 		</u-row>
-	<u-line margin="10px 0 0 0"></u-line>
+		<u-line margin="10px 0 0 0"></u-line>
 	</view>
 </template>
 
@@ -32,13 +34,23 @@
 	onMounted(() => {
 
 	})
+
 	function itemClick() {
 		uni.navigateTo({
 			url: '/pages/webview/webview?link=' + pros.item.link
 		})
 	}
-	function zanClick() {
 
+	function zanClick() {
+		if (props.item.collect) {
+			apis.uncollect(props.item.id)
+		}else {
+			apis.collect(props.item.id)
+		}
+		props.item.collect = !props.item.collect
+		uni.showToast({
+			title: props.item.collect ? '收藏成功' : '取消收藏'
+		})
 	}
 </script>
 
