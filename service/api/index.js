@@ -76,5 +76,17 @@ export default {
 	// 我的积分列表
 	myIntegralList(page) {
 		return minRequest.get(`/lg/coin/list/${page}/json`)
-	}
+	},
+	// 自己分享的文章
+	mySelfEssayList(page) {
+		return minRequest.get(`/user/lg/private_articles/${page}/json`)
+	},
+	// 获取体系信息
+	treeList() {
+		return minRequest.get(`/tree/json`)
+	},
+	// 获取导航信息
+	naviList() {
+		return minRequest.get(`/navi/json`)
+	},
 }

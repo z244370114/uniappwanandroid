@@ -19,6 +19,7 @@
 	import itemKnowledge from '@/components/itemKnowledge.vue'
 
 	import { onLoad } from '@dcloudio/uni-app'
+	import apis from '@/service/api/index.js'
 
 	const titleList = ref(['体系', '导航'])
 	const titleIndex = ref(0)
@@ -35,6 +36,9 @@
 
 	function sectionChange(index) {
 		titleIndex.value = index
+		// if (itemLists.value[titleIndex.value].length == 0) {
+		loadData()
+		// }
 	}
 
 
@@ -42,15 +46,17 @@
 		titleIndex.value = index
 	}
 
-	function loadData() {
-		uni.request({
-			url: 'https://www.wanandroid.com/tree/json',
-			success: (res => {
-				itemLists.value[titleIndex.value] = res.data.data
-			})
-		})
+	async function loadData() {
+		let data = null
+		if (titleIndex.value == 0) {
+			data = await apis.treeList()
+		} else {
+			data = await apis.naviList()
+		}
+		itemLists.value[titleIndex.value] = data
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 </style>
