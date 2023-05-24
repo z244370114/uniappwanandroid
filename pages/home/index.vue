@@ -1,12 +1,13 @@
 <template>
 	<view>
-		<u-swiper :list="bannerList" keyName="imagePath" height="180px" showTitle previousMargin="30" nextMargin="30"
-			radius="5" :autoplay="false" circular @click="swiperClick"></u-swiper>
-		<u-list class="list-view" @scrolltolower="scrolltolower">
-			<u-list-item v-for="(item, index) in articleLists" :key="index">
+		<z-paging ref="paging" v-model="articleLists" loading-more-no-more-text="我也是有底线的！"
+			:show-refresher-when-reload="true" @query="queryList">
+			<u-swiper :list="bannerList" keyName="imagePath" height="180px" showTitle previousMargin="30"
+				nextMargin="30" radius="5" :autoplay="false" circular @click="swiperClick"></u-swiper>
+			<view v-for="(item, index) in articleLists" :key="index">
 				<itemHome :item="item"></itemHome>
-			</u-list-item>
-		</u-list>
+			</view>
+		</z-paging>
 	</view>
 </template>
 
@@ -19,16 +20,14 @@
 
 	const bannerList = ref([])
 	const articleLists = ref([])
+	const paging = ref(null)
 	const page = ref(0)
+	const refresher = ref(true)
 
 	onLoad((options) => {
 		banner()
-		articleList()
+		queryList()
 	})
-
-	function scrolltolower() {
-		articleList()
-	}
 
 	function swiperClick(index) {
 		uni.navigateTo({
@@ -44,38 +43,18 @@
 			})
 		})
 	}
-	const articleList = async () => {
+	const queryList = async () => {
 		const res = await apis.homeList(page.value)
 		if (page.value == 0) {
-			articleLists.value = []
-			articleLists.value = res.datas
+			paging.value.complete(res.datas)
 		} else {
 			let datas = articleLists.value.concat(res.datas)
 			articleLists.value = datas
 		}
 		page.value++
+		paging.value.endRefresh()
 	}
 
-	// function articleList1() {
-	// 	let urls = 'https://www.wanandroid.com/article/list/' + page.value + '/json'
-	// 	uni.request({
-	// 		withCredentials: true,
-	// 		url: urls,
-	// 		success: (res => {
-	// 			if (res.data.errorCode == 0) {
-	// 				if (page.value == 0) {
-	// 					articleLists.value = []
-	// 					articleLists.value = res.data.data.datas
-	// 				} else {
-	// 					let datas = articleLists.value.concat(res.data.data.datas)
-	// 					articleLists.value = datas
-	// 				}
-	// 				page.value++
-	// 			}
-	// 			console.log(articleLists.value.length);
-	// 		})
-	// 	})
-	// }
 
 	function itemClick(index) {
 		uni.navigateTo({
