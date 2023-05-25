@@ -56,6 +56,10 @@ export default {
 	loginOut() {
 		return minRequest.get('/user/logout/json')
 	},
+	// 首页广告
+	bannerList() {
+		return minRequest.get(`/banner/json`)
+	},
 	// 首页
 	homeList(page) {
 		return minRequest.get(`/article/list/${page}/json`)

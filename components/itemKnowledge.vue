@@ -5,7 +5,7 @@
 			<view v-if="!!item.children" v-for="(items,index) in item.children" :key="index" style="padding: 5px;">
 				<u-tag :text="items.name" plain shape="circle" @click="itemTagClick(index)"></u-tag>
 			</view>
-			<view v-else v-for="(items,index) in item.articles" :key="index"  style="padding: 5px;">
+			<view v-else v-for="(items,index) in item.articles" :key="index+1" style="padding: 5px;">
 				<u-tag :text="items.title" plain shape="circle" @click="itemNaivClick(index)"></u-tag>
 			</view>
 		</view>

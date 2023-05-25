@@ -13,3 +13,10 @@
 9. ESLint：ESLint 是一个 JavaScript 代码检查工具，可以检查代码是否符合规范，避免代码中的一些潜在问题，提高开发效率。
 10. Babel：Babel 是一个 JavaScript 转译器，可以将 ES6/ES7 语法转为 ES5 语法，使得开发人员可以在旧版浏览器上运行新版 JavaScript 代码。
 11. [下拉刷新框架](https://z-paging.zxlee.cn/start/intro.html)
+
+
+## 项目截图
+
+| ![](static/首页.jpg)	| ![](static/体系.jpg)	| ![](static/公众号.jpg)| ![](static/项目.jpg)	| ![](static/我的.jpg)	|
+| ---					| ---					| ---					| ---					| ---					|
+| ![](static/我的分享.jpg)	| ![](static/我的积分.jpg)	| ![](static/我的收藏.jpg)	| ![](static/登录.jpg)	| 	|
